@@ -27,10 +27,12 @@ f x | x > 0     = x
 ```idris
 -- some code in Idris
 
+import Data.Nat
+
 data X = A | B
 
 record Y where
-  constuctor MkY
+  constructor MkY
   field1 : Nat
 
 u : ()
@@ -41,15 +43,21 @@ k = '\NUL'
 w = 'w'
 
 f : Int -> Int
-f = if x > 0 then x else 0 () SS S
+f = if x > 0 then x else 0 () SS `elem` S $ do
+  x <- a
+  let ukuk = akak
+  rewrite wow
+  pure f
 
 (&&&) : Nat -> Nat -> Nat
 z &&& y = d + ?foo
 (&&&) x y = ?asfda
 
-(.fun) : Nat -> Nat
+public export covering
+(.fun) : X a b => Nat -> Nat
 Z.fun = haha
-(.fun) Z = ahah
+(.fun) Z = ahah $ \case
+  x@(x, y) => ahahah
 
 xx : Name
 xx = `{Full.Name}
@@ -63,7 +71,7 @@ xxx = case x of
 
 ff : Nat -> TTImp
 ff 0 = let x = 0 in val
-ff _ = `(let x = 0 in val)
+ff _ = `(let x = 0 in ~val ^~^ ~(abc))
 
 %language ElabReflection
 
@@ -75,7 +83,7 @@ fff = `[
   f Z = haha %runElab %search %World
 ]
 
-x : (y : Nat) -> {x : Nat} -> String
+x : (y : Nat) -> {x : Nat} -> {auto _ : Monoid a} -> {default 4 xx : Nat} -> String
 x Z S = ?foo
 x y _ = "a b \{show $ let x = 0 in y} y >>= z"
 

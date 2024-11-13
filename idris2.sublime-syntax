@@ -7,20 +7,35 @@ file_extensions:
 scope: source.idris2
 contexts:
   main:
-    - match: \b(if|then|else|do|let|in)\b
-      scope: keyword.control.idris2
-    - match: \b(impossible|case|of|total|partial|mutual|infix|infixl|infixr|constructor)\b
-      scope: storage.declaration.idris2
-    - match: \b(where|with|syntax|proof|postulate|using|namespace|rewrite)\b
-      scope: keyword.control.idris2
+    - match: \b(if|then|else|case|of|impossible)\b
+      scope: keyword.control.conditional.idris2
+    - match: \b(let|rewrite|in|do)\b
+      scope: keyword.control.flow.idris2
+    - match: \b(prefix|infix|infixl|infixr|autobind|typebind)\b
+      scope: keyword.declaration.fixity.idris2
+    - match: \b(forall)\b
+      scope: keyword.other.forall.idris2
+    - match: \b(constructor)\b
+      scope: keyword.declaration.struct.idris2
+    - match: \b(namespace)\b
+      scope: keyword.control.import.namespace.idris2
+    - match: \b(failing)\b
+      scope: keyword.other.failing.idris2
+    - match: \b(where|with|syntax|proof|using)\b
+      scope: keyword.other.idris2
     - match: (%[^ ]+)
-      scope: keyword.control.idris2
+      scope: keyword.other.pragma.idris2
       comment: Pragmas like `%language`, `%inline`, and expressions like `%search`
     - match: (\?[^ ]+)
-      scope: entity.name.function.idris2
+      scope: variable.function.typed-hole.idris2
       comment: Typed holes
+    - match: (~)
+      scope: keyword.operator.quasiquote.idris2
+      comment: Anti-quote
+    - match: \b(total|covering|partial)\b
+      scope: storage.modifier.totality.idris2
     - match: \b(public|private|export|implicit)\b
-      scope: storage.visibility.idris2
+      scope: storage.modifier.visibility.idris2
     - match: |-
         (--).*$
         ?
@@ -43,7 +58,7 @@ contexts:
           scope: meta.declaration.module.idris2
     - match: \b(import\s+public|import)\b
       captures:
-        1: keyword.other.idris2
+        1: keyword.control.import.idris2
       push:
         - meta_scope: meta.import.idris2
         - match: ($|;|(?=--))
@@ -71,15 +86,12 @@ contexts:
           pop: true
         - include: ty_expression
   data_ctor:
-    - match: '\b[\p{Lu}\p{Lt}][\p{Ll}_\p{Lu}\p{Lt}\p{Nd}'']*(?:\.[\p{Lu}\p{Lt}][\p{Ll}_\p{Lu}\p{Lt}\p{Nd}'']*)*\b'
-      scope: entity.name.function.ctor.idris2
-  unit:
-    - match: '\(\)'
+    - match: '(?:\(\))|(?:\b[\p{Lu}\p{Lt}][\p{Ll}_\p{Lu}\p{Lt}\p{Nd}'']*(?:\.[\p{Lu}\p{Lt}][\p{Ll}_\p{Lu}\p{Lt}\p{Nd}'']*)*\b)'
       scope: entity.name.function.ctor.idris2
   data_decl:
-    - match: \b(data|codata|class|instance|interface|implementation|record)\s
+    - match: \b(data|record|interface|implementation)\s
       captures:
-        1: keyword.other.idris2
+        1: keyword.declaration.type.idris2
       push:
         - meta_scope: meta.declaration.data.idris2
         - match: \b(where)\b|(=)|$
@@ -128,7 +140,7 @@ contexts:
       captures:
         0: punctuation.definition.entity.idris2
       push:
-        - meta_scope: keyword.operator.function.infix.idris2
+        - meta_scope: keyword.operator.word.idris2
         - match: '`'
           captures:
             0: punctuation.definition.entity.idris2
@@ -185,7 +197,7 @@ contexts:
       comment: '{auto p : a = b}'
       captures:
         1: punctuation.delimiter.idris2
-        2: storage.modifier.idris2
+        2: storage.modifier.implicits.idris2
         4: variable.parameter.idris2
         5: keyword.operator.annot.idris2
       push:
@@ -205,10 +217,7 @@ contexts:
           captures:
             0: keyword.operator.quasiquote.idris2
           pop: true
-        - match: '->'
-          scope: keyword.operator.arrow.idris2
-        - include: parameter_type
-        - include: ty_expression
+        - include: data_ctor
   quasiquote_paren:
     - match: '`\('
       captures:
@@ -274,14 +283,12 @@ contexts:
     - include: language_const
     - include: operator
     - include: quasiquote_paren
-    - include: quasiquote_double_bracket
     - include: quasiquote_bracket
     - include: quasiquote_square_bracket
     - include: infix_function
-    - include: unit
+    - include: data_ctor
     - include: delimiter
     - include: number_integer
     - include: number_float
     - include: string
     - include: char
-    - include: data_ctor
