@@ -2,7 +2,10 @@
   font: "Iosevka Extended",
   features: (calt: 0, IDRS: 1)
 )
-#show raw.where(lang: "idris"): set raw(syntaxes: "idris2.sublime-syntax")
+#show raw.where(lang: "idris"): set raw(
+  syntaxes: "idris2.sublime-syntax",
+  theme: "idris2.tmTheme",
+)
 #show raw.where(lang: "console"): it => block(
   fill: rgb("#0d1423"),
   inset: 8pt,
@@ -31,9 +34,12 @@ import Data.Nat
 
 data X = A | B
 
-record Y where
-  constructor MkY
-  field1 : Nat
+namespace X
+  record Y where
+    [noHints]
+    constructor MkY
+    field1 : Nat
+    {auto x : Nat}
 
 u : ()
 u = ()
@@ -42,9 +48,11 @@ k, w, u : Char
 k = '\NUL'
 w = 'w'
 
+x = [1, 0, 3, "sdf\{d}"]
+
 f : Int -> Int
 f = if x > 0 then x else 0 () SS `elem` S $ do
-  x <- a
+  x <- a [1, 2, 3]
   let ukuk = akak
   rewrite wow
   pure f
@@ -57,8 +65,8 @@ public export covering
 (.fun) : X a b => Nat -> Nat
 Z.fun = haha
 (.fun) Z = ahah $ \case
-  x@(x, y) => ahahah
-
+  x@(x, y) => Prelude.Types.ahahah
+  
 xx : Name
 xx = `{Full.Name}
 
@@ -74,6 +82,7 @@ ff 0 = let x = 0 in val
 ff _ = `(let x = 0 in ~val ^~^ ~(abc))
 
 %language ElabReflection
+%runElab X.sf ads
 
 %macro %inline
 fff : List Decl

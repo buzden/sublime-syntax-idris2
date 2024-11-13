@@ -15,17 +15,10 @@ contexts:
       scope: keyword.declaration.fixity.idris2
     - match: \b(forall)\b
       scope: keyword.other.forall.idris2
-    - match: \b(constructor)\b
-      scope: keyword.declaration.struct.idris2
-    - match: \b(namespace)\b
-      scope: keyword.control.import.namespace.idris2
     - match: \b(failing)\b
       scope: keyword.other.failing.idris2
     - match: \b(where|with|syntax|proof|using)\b
       scope: keyword.other.idris2
-    - match: (%[^ ]+)
-      scope: keyword.other.pragma.idris2
-      comment: Pragmas like `%language`, `%inline`, and expressions like `%search`
     - match: (\?[^ ]+)
       scope: variable.function.typed-hole.idris2
       comment: Typed holes
@@ -36,6 +29,12 @@ contexts:
       scope: storage.modifier.totality.idris2
     - match: \b(public|private|export|implicit)\b
       scope: storage.modifier.visibility.idris2
+    - match: "%(hint|globalhint|defaulthint|inline|unsafe|noinline|deprecate|tcinline|extern|macro|spec|foreign|nomangle)"
+      scope: storage.modifier.fnopts.idris2
+      comment: Function options
+    - match: (%[^ ]+)
+      scope: keyword.other.pragma.idris2
+      comment: Top-level pragmas like `%language`, and expression pragmas like `%search`
     - match: |-
         (--).*$
         ?
@@ -64,7 +63,15 @@ contexts:
         - match: ($|;|(?=--))
           pop: true
         - match: '([a-zA-Z0-9._'']+)'
-          scope: support.other.module.idris2
+          scope: entity.name.namespace.idris2
+    - match: '\b(constructor)\s*([a-zA-Z0-9_'']+)\b'
+      captures:
+        1: keyword.declaration.struct.idris2
+        2: entity.name.function.ctor.idris2
+    - match: '\b(namespace)\s*([a-zA-Z0-9._'']+)\b'
+      captures:
+        1: keyword.control.import.namespace.idris2
+        2: entity.name.namespace.idris2
     - include: param_decl
     - include: data_decl
     - include: function_signature
@@ -85,9 +92,13 @@ contexts:
             2: keyword.operator.double-arrow.idris2
           pop: true
         - include: ty_expression
-  data_ctor:
-    - match: '(?:\(\))|(?:\b[\p{Lu}\p{Lt}][\p{Ll}_\p{Lu}\p{Lt}\p{Nd}'']*(?:\.[\p{Lu}\p{Lt}][\p{Ll}_\p{Lu}\p{Lt}\p{Nd}'']*)*\b)'
-      scope: entity.name.function.ctor.idris2
+  name:
+    - match: '(\(\))|(?:\b((?:[\p{Lu}\p{Lt}][\p{Ll}_\p{Lu}\p{Lt}\p{Nd}'']*\.)*)(?:([\p{Lu}\p{Lt}][\p{Ll}_\p{Lu}\p{Lt}\p{Nd}'']*)|([\p{Ll}_\p{Lu}\p{Lt}\p{Nd}'']*))\b)'
+      captures:
+        1: entity.name.function.ctor.idris2
+        2: entity.name.namespace.idris2
+        3: entity.name.function.ctor.idris2
+        4: entity.name.function.idris2
   data_decl:
     - match: \b(data|record|interface|implementation)\s
       captures:
@@ -102,7 +113,7 @@ contexts:
         - include: ty_expression
   delimiter:
     - match: '[\(\)\[\]{},;]'
-      scope: punctuation.delimiter.idris2
+      scope: keyword.operator.delimiter.idris2
   escape_characters:
     - match: '\\(NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\"''\&])'
       scope: constant.character.escape.ascii.idris2
@@ -111,7 +122,7 @@ contexts:
     - match: '\^[A-Z@\[\]\\\^_]'
       scope: constant.character.escape.control.idris2
   function_signature:
-    - match: '(?:([\w'']+)|\((\.[\w'']+)\)|\(([:!#\$%&*+./<=>?@\\\^|-~]+)\))\s*(?:,\s*(?:([\w'']+)|\((\.[\w'']+)\)|\(([:!#\$%&*+./<=>?@\\\^|-~]+)\))\s*)?(?:,\s*(?:([\w'']+)|\((\.[\w'']+)\)|\(([:!#\$%&*+./<=>?@\\\^|-~]+)\))\s*)?(:)(?!:)'
+    - match: '(?:([\w'']+)|(\(\.[\w'']+\))|(\([:!#\$%&*+./<=>?@\\\^|-~]+\)))\s*(?:,\s*(?:([\w'']+)|(\(\.[\w'']+\))|(\([:!#\$%&*+./<=>?@\\\^|-~]+\)))\s*)?(?:,\s*(?:([\w'']+)|(\(\.[\w'']+\))|(\([:!#\$%&*+./<=>?@\\\^|-~]+\)))\s*)?(:)(?!:)'
       comment: |
         The end patterm is a bit tricky. It's either ';' or something, at the end of the line,
         but not '->', because a type signature can be multiline. Though, it doesn't help, if you
@@ -119,15 +130,15 @@ contexts:
         Unfortunately, when some names are listed, we support when there are only two or three of them, and we have repretition on the pattern above.
         Repetition using `*` breaks captures (except the last one).
       captures:
-        1: entity.name.function.idris2
-        2: entity.name.function.idris2
-        3: entity.name.function.idris2
-        4: entity.name.function.idris2
-        5: entity.name.function.idris2
-        6: entity.name.function.idris2
-        7: entity.name.function.idris2
-        8: entity.name.function.idris2
-        9: entity.name.function.idris2
+        1: entity.name.function.declaration.idris2
+        2: entity.name.function.declaration.postfix.idris2
+        3: entity.name.function.declaration.infix.idris2
+        4: entity.name.function.declaration.idris2
+        5: entity.name.function.declaration.postfix.idris2
+        6: entity.name.function.declaration.infix.idris2
+        7: entity.name.function.declaration.idris2
+        8: entity.name.function.declaration.postfix.idris2
+        9: entity.name.function.declaration.infix.idris2
         10: keyword.operator.colon.idris2
       push:
         - meta_scope: meta.function.type-signature.idris2
@@ -217,7 +228,7 @@ contexts:
           captures:
             0: keyword.operator.quasiquote.idris2
           pop: true
-        - include: data_ctor
+        - include: name
   quasiquote_paren:
     - match: '`\('
       captures:
@@ -286,7 +297,7 @@ contexts:
     - include: quasiquote_bracket
     - include: quasiquote_square_bracket
     - include: infix_function
-    - include: data_ctor
+    - include: name
     - include: delimiter
     - include: number_integer
     - include: number_float
