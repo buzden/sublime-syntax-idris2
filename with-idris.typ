@@ -12,7 +12,7 @@
 
 = Haskell
 
-```haskell
+```hs
 -- some code in Haskell
 
 data X = A | B
@@ -36,8 +36,20 @@ record Y where
 u : ()
 u = ()
 
+k, w, u : Char
+k = '\NUL'
+w = 'w'
+
 f : Int -> Int
 f = if x > 0 then x else 0 () SS S
+
+(&&&) : Nat -> Nat -> Nat
+z &&& y = d + ?foo
+(&&&) x y = ?asfda
+
+(.fun) : Nat -> Nat
+Z.fun = haha
+(.fun) Z = ahah
 
 xx : Name
 xx = `{Full.Name}
@@ -53,10 +65,14 @@ ff : Nat -> TTImp
 ff 0 = let x = 0 in val
 ff _ = `(let x = 0 in val)
 
+%language ElabReflection
+
+%macro %inline
 fff : List Decl
 fff = `[
   f : Nat -> Nat
-  f Z = haha
+
+  f Z = haha %runElab %search %World
 ]
 
 x : (y : Nat) -> {x : Nat} -> String

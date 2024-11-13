@@ -13,6 +13,12 @@ contexts:
       scope: storage.declaration.idris2
     - match: \b(where|with|syntax|proof|postulate|using|namespace|rewrite)\b
       scope: keyword.control.idris2
+    - match: (%[^ ]+)
+      scope: keyword.control.idris2
+      comment: Pragmas like `%language`, `%inline`, and expressions like `%search`
+    - match: (\?[^ ]+)
+      scope: entity.name.function.idris2
+      comment: Typed holes
     - match: \b(public|private|export|implicit)\b
       scope: storage.visibility.idris2
     - match: |-
@@ -51,7 +57,7 @@ contexts:
   context_signature:
     - match: '(\()((?=.*\)\s*=>)|(?=[^)]*$))'
       comment: |
-        For things like '(Eq a, Show b) =>'
+        For things like '(Eq a, Show a) =>'
         It begins with '(' either followed by ') =>' on the same line,
         or anything but ')' until the end of line.
       captures:
@@ -66,6 +72,9 @@ contexts:
         - include: ty_expression
   data_ctor:
     - match: '\b[\p{Lu}\p{Lt}][\p{Ll}_\p{Lu}\p{Lt}\p{Nd}'']*(?:\.[\p{Lu}\p{Lt}][\p{Ll}_\p{Lu}\p{Lt}\p{Nd}'']*)*\b'
+      scope: entity.name.function.ctor.idris2
+  unit:
+    - match: '\(\)'
       scope: entity.name.function.ctor.idris2
   data_decl:
     - match: \b(data|codata|class|instance|interface|implementation|record)\s
@@ -90,15 +99,24 @@ contexts:
     - match: '\^[A-Z@\[\]\\\^_]'
       scope: constant.character.escape.control.idris2
   function_signature:
-    - match: '(([\w'']+)|\(([|!%$+\-.,=</>:]+)\))\s*(:)(?!:)'
+    - match: '(?:([\w'']+)|\((\.[\w'']+)\)|\(([:!#\$%&*+./<=>?@\\\^|-~]+)\))\s*(?:,\s*(?:([\w'']+)|\((\.[\w'']+)\)|\(([:!#\$%&*+./<=>?@\\\^|-~]+)\))\s*)?(?:,\s*(?:([\w'']+)|\((\.[\w'']+)\)|\(([:!#\$%&*+./<=>?@\\\^|-~]+)\))\s*)?(:)(?!:)'
       comment: |
         The end patterm is a bit tricky. It's either ';' or something, at the end of the line,
         but not '->', because a type signature can be multiline. Though, it doesn't help, if you
         break the signature before arrows.
+        Unfortunately, when some names are listed, we support when there are only two or three of them, and we have repretition on the pattern above.
+        Repetition using `*` breaks captures (except the last one).
       captures:
+        1: entity.name.function.idris2
         2: entity.name.function.idris2
         3: entity.name.function.idris2
-        4: keyword.operator.colon.idris2
+        4: entity.name.function.idris2
+        5: entity.name.function.idris2
+        6: entity.name.function.idris2
+        7: entity.name.function.idris2
+        8: entity.name.function.idris2
+        9: entity.name.function.idris2
+        10: keyword.operator.colon.idris2
       push:
         - meta_scope: meta.function.type-signature.idris2
         - match: (?!->)
@@ -177,12 +195,6 @@ contexts:
             0: punctuation.delimiter.idris2
           pop: true
         - include: ty_expression
-  prelude_type:
-    - match: \b(Type|Int|Nat|Integer|Float|Char|String|Ptr|Bits8|Bits16|Bits32|Bits64|Bool)\b
-      scope: support.type.builtin.idris2
-  unit:
-    - match: \(\)
-      scope: support.type.builtin.idris2
   quasiquote_bracket:
     - match: '`{'
       captures:
@@ -231,7 +243,7 @@ contexts:
             0: string.quoted.double.idris2
           pop: true
         - include: main
-  string_double:
+  string:
     - match: '"'
       captures:
         0: punctuation.definition.string.begin.idris2
@@ -243,6 +255,18 @@ contexts:
           pop: true
         - include: string_interpolation
         - include: escape_characters
+  char:
+    - match: "'"
+      captures:
+        0: punctuation.definition.string.begin.idris2
+      push:
+        - meta_scope: string.quoted.single.idris2
+        - match: "'"
+          captures:
+            0: punctuation.definition.string.end.idris2
+          pop: true
+        - include: escape_characters
+      comment: TODO to match only a single char
   ty_expression:
     - match: '->'
       scope: keyword.operator.arrow.idris2
@@ -254,10 +278,10 @@ contexts:
     - include: quasiquote_bracket
     - include: quasiquote_square_bracket
     - include: infix_function
-    - include: prelude_type
     - include: unit
     - include: delimiter
     - include: number_integer
     - include: number_float
-    - include: string_double
+    - include: string
+    - include: char
     - include: data_ctor
