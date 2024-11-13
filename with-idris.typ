@@ -1,4 +1,14 @@
-#show raw.with(lang: "idris"): set(syntaxes: "idris2.sublime-syntax")
+#show raw: set text(
+  font: "Iosevka Extended",
+  features: (calt: 0, IDRS: 1)
+)
+#show raw.where(lang: "idris"): set raw(syntaxes: "idris2.sublime-syntax")
+#show raw.where(lang: "console"): it => block(
+  fill: rgb("#0d1423"),
+  inset: 8pt,
+  radius: 5pt,
+  text(fill: rgb("#b2bacc"), it)
+)
 
 = Haskell
 
@@ -23,8 +33,40 @@ record Y where
   constuctor MkY
   field1 : Nat
 
+u : ()
+u = ()
+
 f : Int -> Int
-f = if x > 0 then x else 0
+f = if x > 0 then x else 0 () SS S
+
+xx : Name
+xx = `{Full.Name}
+
+infixr 0 ^^^, &&&
+
+xxx : ?
+xxx = case x of
+  Z => lalala
+  z => alalal
+
+ff : Nat -> TTImp
+ff 0 = let x = 0 in val
+ff _ = `(let x = 0 in val)
+
+fff : List Decl
+fff = `[
+  f : Nat -> Nat
+  f Z = haha
+]
+
+x : (y : Nat) -> {x : Nat} -> String
+x Z S = ?foo
+x y _ = "a b \{show $ let x = 0 in y} y >>= z"
+
+multiline : String
+multiline = """
+  A multiline string\NUL
+  """
 ```
 
 = Console

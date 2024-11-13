@@ -1,13 +1,13 @@
 %YAML 1.2
 ---
 # http://www.sublimetext.com/docs/syntax.html
-name: Idris 2
+name: Idris
 file_extensions:
   - idr
 scope: source.idris2
 contexts:
   main:
-    - match: \b(if|then|else|do|let|in|dsl)\b
+    - match: \b(if|then|else|do|let|in)\b
       scope: keyword.control.idris2
     - match: \b(impossible|case|of|total|partial|mutual|infix|infixl|infixr|constructor)\b
       scope: storage.declaration.idris2
@@ -116,10 +116,6 @@ contexts:
             0: punctuation.definition.entity.idris2
           pop: true
   language_const:
-    - match: \(\)
-      scope: constant.language.unit.idris2
-    - match: _\|_
-      scope: constant.language.bottom.idris2
     - match: \b_\b
       scope: constant.language.underscore.idris2
   multiline_comment:
@@ -137,9 +133,6 @@ contexts:
   number_integer:
     - match: '\b([0-9]+|0([xX][0-9a-fA-F]+|[oO][0-7]+))\b'
       comment: integer literal
-      scope: constant.numeric.idris2
-  number_nat:
-    - match: \b(S|Z)\b
       scope: constant.numeric.idris2
   operator:
     - match: '\?[-!#\$%&\*\+\.\/<=>@\\^|~:]+|[-!#\$%&\*\+\.\/<=>@\\^|~:\?][-!#\$%&\*\+\.\/<=>@\\^|~:]*'
@@ -187,6 +180,9 @@ contexts:
   prelude_type:
     - match: \b(Type|Int|Nat|Integer|Float|Char|String|Ptr|Bits8|Bits16|Bits32|Bits64|Bool)\b
       scope: support.type.builtin.idris2
+  unit:
+    - match: \(\)
+      scope: support.type.builtin.idris2
   quasiquote_bracket:
     - match: '`{'
       captures:
@@ -201,34 +197,17 @@ contexts:
           scope: keyword.operator.arrow.idris2
         - include: parameter_type
         - include: ty_expression
-  quasiquote_double_bracket:
-    - match: '`{{'
-      captures:
-        0: keyword.operator.quasiquote.idris2
-      push:
-        - meta_scope: meta.quasiquote.idris2
-        - match: '}}'
-          captures:
-            0: keyword.operator.quasiquote.idris2
-          pop: true
-        - match: '->'
-          scope: keyword.operator.arrow.idris2
-        - include: parameter_type
-        - include: ty_expression
   quasiquote_paren:
     - match: '`\('
       captures:
         0: keyword.operator.quasiquote.idris2
       push:
         - meta_scope: meta.quasiquote.idris2
-        - match: \)
+        - match: '\)'
           captures:
             0: keyword.operator.quasiquote.idris2
           pop: true
-        - match: '->'
-          scope: keyword.operator.arrow.idris2
-        - include: parameter_type
-        - include: ty_expression
+        - include: main
   quasiquote_square_bracket:
     - match: '`\['
       captures:
@@ -239,10 +218,19 @@ contexts:
           captures:
             0: keyword.operator.quasiquote.idris2
           pop: true
-        - match: '->'
-          scope: keyword.operator.arrow.idris2
-        - include: parameter_type
-        - include: ty_expression
+        - include: main
+  string_interpolation:
+    - match: '\\{'
+      captures:
+        0: string.quoted.double.idris2
+      push:
+        - clear_scopes: true
+        - meta_content_scope: source.idris2
+        - match: '}'
+          captures:
+            0: string.quoted.double.idris2
+          pop: true
+        - include: main
   string_double:
     - match: '"'
       captures:
@@ -253,16 +241,8 @@ contexts:
           captures:
             0: punctuation.definition.string.end.idris2
           pop: true
+        - include: string_interpolation
         - include: escape_characters
-  string_single:
-    - match: '('')(?:(?:\\")|(?:\\[0-9]+)|(\\o[0-7]+)|(\\x[0-9a-fA-F]+)|(?:[^''])|(NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL))('')'
-      scope: string.quoted.single.idris2
-      captures:
-        1: punctuation.definition.string.begin.idris2
-        2: constant.character.escape.octal.idris2
-        3: constant.character.escape.hexadecimal.idris2
-        4: constant.character.escape.control.idris2
-        5: punctuation.definition.string.end.idris2
   ty_expression:
     - match: '->'
       scope: keyword.operator.arrow.idris2
@@ -275,14 +255,9 @@ contexts:
     - include: quasiquote_square_bracket
     - include: infix_function
     - include: prelude_type
+    - include: unit
     - include: delimiter
-    - include: number_nat
     - include: number_integer
     - include: number_float
-    - include: unit
     - include: string_double
-    - include: string_single
     - include: data_ctor
-  unit:
-    - match: \(\)
-      scope: constant.unit.idris2
