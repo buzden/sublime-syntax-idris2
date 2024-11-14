@@ -53,6 +53,7 @@ contexts:
         - meta_scope: meta.module.idris2
         - match: ($|{|(?=--))
           scope: keyword.operator.delimiter.idris2
+          comment: '`keyword.operator.delimiter`, not `punctuation.delimiter` to be consistent with the closing bracket'
           pop: true
         - match: '([\p{Lu}\p{Lt}](?:[\p{L}\p{Nd}._'']*[\p{L}\p{Nd}_''])?)'
           scope: entity.name.namespace.idris2
@@ -62,7 +63,7 @@ contexts:
       push:
         - meta_scope: meta.import.idris2
         - match: ($|;|(?=--))
-          scope: keyword.operator.delimiter.idris2
+          scope: punctuation.delimiter.idris2
           pop: true
         - match: '([\p{Lu}\p{Lt}](?:[\p{L}\p{Nd}._'']*[\p{L}\p{Nd}_''])?)'
           scope: entity.name.namespace.idris2
@@ -73,6 +74,7 @@ contexts:
         - meta_scope: meta.import.idris2
         - match: ($|{|(?=--))
           scope: keyword.operator.delimiter.idris2
+          comment: '`keyword.operator.delimiter`, not `punctuation.delimiter` to be consistent with the closing bracket'
           pop: true
         - match: '([\p{Lu}\p{Lt}](?:[\p{L}\p{Nd}._'']*[\p{L}\p{Nd}_''])?)'
           scope: entity.name.namespace.idris2
@@ -179,12 +181,12 @@ contexts:
     - match: \b(parameters)\s+(\()
       captures:
         1: keyword.other.idris2
-        2: punctuation.context.begin.idris2
+        2: punctuation.delimiter.idris2
       push:
         - meta_scope: meta.declaration.data.idris2
         - match: (\))$
           captures:
-            1: punctuation.context.end.idris2
+            1: punctuation.delimiter.idris2
           pop: true
         - include: ty_expression
   parameter_type:

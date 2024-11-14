@@ -33,7 +33,7 @@ f x | x > 0     = x
 
 ```idris
 -- some code in Idris
-module XXX'''
+module XX.X'''
 
 import Data.Nat
 
@@ -48,7 +48,8 @@ namespace X
     {auto x : Nat}
 
 namespace X' {
-  x : Nat
+  parameters (x : A (Maybe b))
+    x : Nat
 }
 
 u : ()
@@ -90,6 +91,7 @@ xxx = case x of
 ff : Nat -> TTImp
 ff 0 = let x = 0 in val
 ff _ = `(let x = 0 in ~val ^~^ ~(abc))
+ff _ = f `(let x = 0 in ~val ^~^ ~(abc)) x
 
 %language ElabReflection
 %runElab X.sf ads
