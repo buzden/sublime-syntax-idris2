@@ -18,6 +18,13 @@
       </dict>
     </dict>
     <dict>
+      <key>name</key><string>Documentation comment</string>
+      <key>scope</key><string>comment.documentation</string>
+      <key>settings</key><dict>
+        <key>fontStyle</key><string></string>
+      </dict>
+    </dict>
+    <dict>
       <key>name</key><string>String</string>
       <key>scope</key><string>string</string>
       <key>settings</key><dict>

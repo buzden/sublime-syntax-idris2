@@ -33,17 +33,23 @@ f x | x > 0     = x
 
 ```idris
 -- some code in Idris
+module XXX'''
 
 import Data.Nat
 
 data X = A | B
 
 namespace X
+  ||| Documentation
   record Y where
     [noHints]
-    constructor MkY
+    constructor MkY'
     field1 : Nat
     {auto x : Nat}
+
+namespace X' {
+  x : Nat
+}
 
 u : ()
 u = ()

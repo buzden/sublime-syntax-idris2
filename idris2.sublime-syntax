@@ -51,27 +51,41 @@ contexts:
         1: keyword.control.idris2
       push:
         - meta_scope: meta.module.idris2
-        - match: ($|;|(?=--))
+        - match: ($|{|(?=--))
+          scope: keyword.operator.delimiter.idris2
           pop: true
-        - match: '([a-zA-Z0-9._'']+)'
-          scope: meta.declaration.module.idris2
+        - match: '([\p{Lu}\p{Lt}](?:[\p{L}\p{Nd}._'']*[\p{L}\p{Nd}_''])?)'
+          scope: entity.name.namespace.idris2
     - match: \b(import\s+public|import)\b
       captures:
         1: keyword.control.import.idris2
       push:
         - meta_scope: meta.import.idris2
         - match: ($|;|(?=--))
+          scope: keyword.operator.delimiter.idris2
           pop: true
-        - match: '([a-zA-Z0-9._'']+)'
+        - match: '([\p{Lu}\p{Lt}](?:[\p{L}\p{Nd}._'']*[\p{L}\p{Nd}_''])?)'
           scope: entity.name.namespace.idris2
-    - match: '\b(constructor)\s*([a-zA-Z0-9_'']+)\b'
-      captures:
-        1: keyword.declaration.struct.idris2
-        2: entity.name.function.ctor.idris2
-    - match: '\b(namespace)\s*([a-zA-Z0-9._'']+)\b'
+    - match: \b(namespace)\b
       captures:
         1: keyword.control.import.namespace.idris2
-        2: entity.name.namespace.idris2
+      push:
+        - meta_scope: meta.import.idris2
+        - match: ($|{|(?=--))
+          scope: keyword.operator.delimiter.idris2
+          pop: true
+        - match: '([\p{Lu}\p{Lt}](?:[\p{L}\p{Nd}._'']*[\p{L}\p{Nd}_''])?)'
+          scope: entity.name.namespace.idris2
+    - match: \b(constructor)\b
+      captures:
+        1: keyword.declaration.struct.idris2
+      push:
+        - meta_scope: meta.type.idris2
+        - match: ($|;|(?=--))
+          scope: keyword.operator.delimiter.idris2
+          pop: true
+        - match: '([\p{Lu}\p{Lt}][\p{L}\p{Nd}_'']+)'
+          scope: entity.name.function.ctor.idris2
     - include: param_decl
     - include: data_decl
     - include: function_signature
