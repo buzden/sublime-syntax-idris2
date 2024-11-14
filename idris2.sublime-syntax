@@ -5,6 +5,22 @@ name: Idris
 file_extensions:
   - idr
 scope: source.idris2
+variables:
+  upper_name: '(?:[\p{Lu}\p{Lt}][\p{L}_\p{Nd}'']*)'
+  lower_name: '(?:\p{Ll}[\p{L}_\p{Nd}'']*)'
+  basic_name: '(?:{{upper_name}}|{{lower_name}})'
+  namespace: '(?:(?:{{upper_name}}\.)*{{upper_name}})'
+  operator: '(?:[:!#\$%&*+./<=>?@\\\^|-~]+)'
+  prefix_name: '(?:{{basic_name}}|\({{operator}}\)|\(\.{{basic_name}}\))'
+
+  decs: '[0-9]+'
+  hexs: '[0-9a-fA-F]+'
+  octs: '[0-7]+'
+  bits: '[01]+'
+  dec_int: '(?:{{decs}}(?:_{{decs}})*)'
+  hex_int: '(?:{{hexs}}(?:_{{hexs}})*)'
+  oct_int: '(?:{{octs}}(?:_{{octs}})*)'
+  bit_int: '(?:{{bits}}(?:_{{bits}})*)'
 contexts:
   main:
     - match: \b(if|then|else|case|of|impossible)\b
@@ -55,7 +71,7 @@ contexts:
           scope: keyword.operator.delimiter.idris2
           comment: '`keyword.operator.delimiter`, not `punctuation.delimiter` to be consistent with the closing bracket'
           pop: true
-        - match: '([\p{Lu}\p{Lt}](?:[\p{L}\p{Nd}._'']*[\p{L}\p{Nd}_''])?)'
+        - match: '{{namespace}}'
           scope: entity.name.namespace.idris2
     - match: \b(import\s+public|import)\b
       captures:
@@ -65,7 +81,7 @@ contexts:
         - match: ($|;|(?=--))
           scope: punctuation.delimiter.idris2
           pop: true
-        - match: '([\p{Lu}\p{Lt}](?:[\p{L}\p{Nd}._'']*[\p{L}\p{Nd}_''])?)'
+        - match: '{{namespace}}'
           scope: entity.name.namespace.idris2
     - match: \b(namespace)\b
       captures:
@@ -76,7 +92,7 @@ contexts:
           scope: keyword.operator.delimiter.idris2
           comment: '`keyword.operator.delimiter`, not `punctuation.delimiter` to be consistent with the closing bracket'
           pop: true
-        - match: '([\p{Lu}\p{Lt}](?:[\p{L}\p{Nd}._'']*[\p{L}\p{Nd}_''])?)'
+        - match: '{{namespace}}'
           scope: entity.name.namespace.idris2
     - match: \b(constructor)\b
       captures:
@@ -86,31 +102,32 @@ contexts:
         - match: ($|;|(?=--))
           scope: keyword.operator.delimiter.idris2
           pop: true
-        - match: '([\p{Lu}\p{Lt}][\p{L}\p{Nd}_'']+)'
+        - match: '{{upper_name}}'
           scope: entity.name.function.ctor.idris2
     - include: param_decl
     - include: data_decl
     - include: function_signature
     - include: ty_expression
   name:
-    - match: '(\(\))|(?:\b((?:[\p{Lu}\p{Lt}][\p{Ll}_\p{Lu}\p{Lt}\p{Nd}'']*\.)*)(?:([\p{Lu}\p{Lt}][\p{Ll}_\p{Lu}\p{Lt}\p{Nd}'']*)|(\p{Ll}[\p{Ll}_\p{Lu}\p{Lt}\p{Nd}'']*))\b)'
+    - match: '(\(\))'
+      scope: entity.name.function.ctor.idris2
+    - match: '\b({{namespace}}\.)?(?:({{upper_name}})|({{lower_name}}))\b'
       comment: '`Namespace.Namespace.name` or `Namespace.Namespace.Name`'
       captures:
-        1: entity.name.function.ctor.idris2
-        2: entity.name.namespace.idris2
-        3: entity.name.function.ctor.idris2
-        4: entity.name.function.idris2
-    - match: '(\()([:!#\$%&*+./<=>?@\\\^|-~]+)(\))'
+        1: entity.name.namespace.idris2
+        2: entity.name.function.ctor.idris2
+        3: entity.name.function.idris2
+    - match: '(\()({{operator}})(\))'
       comment: '(&&&)'
       captures:
         1: punctuation.delimiter.idris2
         2: keyword.operator.infix-as-prefix.idris2
         3: punctuation.delimiter.idris2
-    - match: '\(\.[\w'']+\)'
+    - match: '(\()(\.{{basic_name}})(\))'
       comment: '(.fun)'
       captures:
         1: punctuation.delimiter.idris2
-        4: entity.name.function.postfix-as-prefix.idris2
+        4: entity.name.function.postfix.as-prefix.idris2
         3: punctuation.delimiter.idris2
   data_decl:
     - match: \b(data|record|interface|implementation)\s
@@ -144,7 +161,7 @@ contexts:
     - match: '\^[A-Z@\[\]\\\^_]'
       scope: constant.character.escape.control.idris2
   function_signature:
-    - match: '(?:([\w'']+)|(\(\.[\w'']+\))|(\([:!#\$%&*+./<=>?@\\\^|-~]+\)))\s*(?:,\s*(?:([\w'']+)|(\(\.[\w'']+\))|(\([:!#\$%&*+./<=>?@\\\^|-~]+\)))\s*)?(?:,\s*(?:([\w'']+)|(\(\.[\w'']+\))|(\([:!#\$%&*+./<=>?@\\\^|-~]+\)))\s*)?(:)(?!:)'
+    - match: '({{prefix_name}})\s*(?:,\s*({{prefix_name}})\s*)?(?:,\s*({{prefix_name}})\s*)?(:)(?!:)'
       comment: |
         The end patterm is a bit tricky. It's either ';' or something, at the end of the line,
         but not '->', because a type signature can be multiline. Though, it doesn't help, if you
@@ -153,15 +170,9 @@ contexts:
         Repetition using `*` breaks captures (except the last one).
       captures:
         1: entity.name.function.declaration.idris2
-        2: entity.name.function.declaration.postfix.idris2
-        3: entity.name.function.declaration.infix.idris2
-        4: entity.name.function.declaration.idris2
-        5: entity.name.function.declaration.postfix.idris2
-        6: entity.name.function.declaration.infix.idris2
-        7: entity.name.function.declaration.idris2
-        8: entity.name.function.declaration.postfix.idris2
-        9: entity.name.function.declaration.infix.idris2
-        10: keyword.operator.colon.idris2
+        2: entity.name.function.declaration.idris2
+        3: entity.name.function.declaration.idris2
+        4: keyword.operator.colon.idris2
       push:
         - meta_scope: meta.function.type-signature.idris2
         - match: (?!->)
@@ -193,7 +204,7 @@ contexts:
       comment: float literal
       scope: constant.numeric.float.idris2
   number_integer:
-    - match: '\b([0-9]+|0([xX][0-9a-fA-F]+|[oO][0-7]+))\b'
+    - match: '\b({{dec_int}}|0([xX]{{hex_int}}|[oO]{{oct_int}}|[bB]{{bit_int}}))\b'
       comment: integer literal
       scope: constant.numeric.idris2
   operator:

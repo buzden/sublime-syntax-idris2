@@ -59,7 +59,7 @@ k, w, u : Char
 k = '\NUL'
 w = 'w'
 
-x = [1, 0, 3, "sdf\{d}"]
+x = [1, 0, 3, "sdf\{d}", 0xFF, 0o77, 0b10_1, 100_100]
 
 f : Int -> Int
 f = if x > 0 then x else 0 () SS `elem` S $ do
@@ -74,10 +74,14 @@ z &&& y = d + ?foo
 
 public export covering
 (.fun) : X a Y b => Nat -> Nat
-Z .fun = haha
+Z .fun = haha.fun haha .N
 (.fun) Z = ahah $ \case
   x@(x, y) => Prelude.Types.ahahah
   
+(.N) : Nat -> Nat
+Z .N = Z
+(.N) (S n) = n
+
 xx : Name
 xx = `{Full.Name}
 
