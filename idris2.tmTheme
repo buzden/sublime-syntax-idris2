@@ -151,7 +151,7 @@
       <key>name</key><string>String interpolation meta</string>
       <key>scope</key><string>meta.string.interpolation</string>
       <key>settings</key><dict>
-        <key>fontStyle</key><string>underline</string>
+        <!--<key>fontStyle</key><string>underline</string>-->
       </dict>
     </dict>
     <dict>
