@@ -222,11 +222,12 @@ contexts:
             0: punctuation.delimiter.idris2
           pop: true
         - include: ty_expression
-    - match: '(\{)((auto|default .+)\s+)?([\w'']+)\s*(:)(?!:)'
+    - match: '(\{)(?:(auto|default (.+))\s+)?([\w'']+)\s*(:)(?!:)'
       comment: '{auto p : a = b}'
       captures:
         1: punctuation.delimiter.idris2
         2: storage.modifier.implicits.idris2
+        3: meta.function.default-arg-value.idris2
         4: variable.parameter.idris2
         5: keyword.operator.annot.idris2
       push:

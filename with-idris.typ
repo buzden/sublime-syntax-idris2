@@ -104,6 +104,12 @@ fff = `[
   f Z = haha %runElab %search %World
 ]
 
+private infixr 4 ^--^
+
+(^--^) : Nat -> Nat -> Nat
+(^--^) Z Z = Z
+x ^--^ y = x + y
+
 x : (y : Vect n (Maybe (Maybe (&&&) Nat))) ->
     {x : Nat} -> {auto _ : Monoid a} ->
     {default 4 xx : Nat} ->

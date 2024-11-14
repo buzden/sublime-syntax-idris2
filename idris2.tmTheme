@@ -141,6 +141,13 @@
       </dict>
     </dict>
     <dict>
+      <key>name</key><string>Value of default argument</string>
+      <key>scope</key><string>meta.function.default-arg-value.idris2</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#7F7F7F</string>
+      </dict>
+    </dict>
+    <dict>
       <key>name</key><string>Parens around parameters</string>
       <key>scope</key><string>punctuation.delimiter</string>
       <key>settings</key><dict>
