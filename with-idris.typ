@@ -58,8 +58,8 @@ f : Int -> Int
 f = if x > 0 then x else 0 () SS `elem` S $ do
   x <- a [1, 2, 3]
   let ukuk = akak
-  rewrite wow
-  pure f
+  rewrite $ Wow Wow Wow Wow.Wow b W (W)
+  pure $ f A B c D E
 
 (&&&) : Nat -> Nat -> Nat
 z &&& y = d + ?foo
