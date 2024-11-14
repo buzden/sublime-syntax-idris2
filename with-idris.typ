@@ -104,7 +104,7 @@ fff = `[
   f Z = haha %runElab %search %World
 ]
 
-x : (y : Nat) -> {x : Nat} -> {auto _ : Monoid a} -> {default 4 xx : Nat} -> String
+x : (y : Vect n (Maybe Nat)) -> {x : Nat} -> {auto _ : Monoid a} -> {default 4 xx : Nat} -> String
 x Z S = ?foo
 x y _ = "a b \{show $ let x = 0 in y} y >>= z"
 

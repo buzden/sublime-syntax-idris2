@@ -178,17 +178,14 @@ contexts:
     - match: '\?[-!#\$%&\*\+\.\/<=>@\\^|~:]+|[-!#\$%&\*\+\.\/<=>@\\^|~:\?][-!#\$%&\*\+\.\/<=>@\\^|~:]*'
       scope: keyword.operator.idris2
   param_decl:
-    - match: \b(parameters)\s+(\()
+    - match: \b(parameters)\s+
       captures:
         1: keyword.other.idris2
-        2: punctuation.delimiter.idris2
       push:
         - meta_scope: meta.declaration.data.idris2
-        - match: (\))$
-          captures:
-            1: punctuation.delimiter.idris2
+        - match: '$'
           pop: true
-        - include: ty_expression
+        - include: parameter_type
   parameter_type:
     - match: '(\()([\w'']+)\s*(:)(?!:)'
       comment: '(x : Nat)'
