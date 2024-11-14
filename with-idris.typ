@@ -2,6 +2,10 @@
   font: "Iosevka Extended",
   features: (calt: 0, IDRS: 1)
 )
+// #show raw: set text(
+//   font: "Fira Code",
+//   features: (calt: 1, ss09: 1, ss03: 1, cv29: 1, cv24: 1)
+// )
 #show raw.where(lang: "idris"): set raw(
   syntaxes: "idris2.sublime-syntax",
   theme: "idris2.tmTheme",
