@@ -74,7 +74,7 @@ z &&& y = d + ?foo
 
 public export covering
 (.fun) : X a Y b => Nat -> Nat
-Z.fun = haha
+Z .fun = haha
 (.fun) Z = ahah $ \case
   x@(x, y) => Prelude.Types.ahahah
   
@@ -104,7 +104,9 @@ fff = `[
   f Z = haha %runElab %search %World
 ]
 
-x : (y : Vect n (Maybe Nat)) -> {x : Nat} -> {auto _ : Monoid a} -> {default 4 xx : Nat} -> String
+x : (y : Vect n (Maybe (Maybe (&&&) Nat))) ->
+    {x : Nat} -> {auto _ : Monoid a} ->
+    {default 4 xx : Nat} -> String
 x Z S = ?foo
 x y _ = "a b \{show $ let x = 0 in y} y >>= z"
 
