@@ -276,7 +276,7 @@ contexts:
         0: string.quoted.double.idris2
       push:
         - clear_scopes: true
-        - meta_content_scope: source.idris2
+        - meta_content_scope: meta.string.interpolation.idris2
         - match: '}'
           captures:
             0: string.quoted.double.idris2
