@@ -76,24 +76,8 @@ contexts:
     - include: data_decl
     - include: function_signature
     - include: ty_expression
-  context_signature:
-    - match: '(\()((?=.*\)\s*=>)|(?=[^)]*$))'
-      comment: |
-        For things like '(Eq a, Show a) =>'
-        It begins with '(' either followed by ') =>' on the same line,
-        or anything but ')' until the end of line.
-      captures:
-        1: punctuation.context.begin.idris2
-      push:
-        - meta_scope: meta.context-signature.idris2
-        - match: (\))\s*(=>)
-          captures:
-            1: punctuation.context.end.idris2
-            2: keyword.operator.double-arrow.idris2
-          pop: true
-        - include: ty_expression
   name:
-    - match: '(\(\))|(?:\b((?:[\p{Lu}\p{Lt}][\p{Ll}_\p{Lu}\p{Lt}\p{Nd}'']*\.)*)(?:([\p{Lu}\p{Lt}][\p{Ll}_\p{Lu}\p{Lt}\p{Nd}'']*)|([\p{Ll}_\p{Lu}\p{Lt}\p{Nd}'']*))\b)'
+    - match: '(\(\))|(?:\b((?:[\p{Lu}\p{Lt}][\p{Ll}_\p{Lu}\p{Lt}\p{Nd}'']*\.)*)(?:([\p{Lu}\p{Lt}][\p{Ll}_\p{Lu}\p{Lt}\p{Nd}'']*)|(\p{Ll}[\p{Ll}_\p{Lu}\p{Lt}\p{Nd}'']*))\b)'
       captures:
         1: entity.name.function.ctor.idris2
         2: entity.name.namespace.idris2
@@ -144,7 +128,6 @@ contexts:
         - meta_scope: meta.function.type-signature.idris2
         - match: (?!->)
           pop: true
-        - include: context_signature
         - include: ty_expression
   infix_function:
     - match: '`'

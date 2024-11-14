@@ -59,14 +59,14 @@ f = if x > 0 then x else 0 () SS `elem` S $ do
   x <- a [1, 2, 3]
   let ukuk = akak
   rewrite $ Wow Wow Wow Wow.Wow b W (W)
-  pure $ f A B c D E
+  pure $ f A B c D (EE) E
 
 (&&&) : Nat -> Nat -> Nat
 z &&& y = d + ?foo
 (&&&) x y = ?asfda
 
 public export covering
-(.fun) : X a b => Nat -> Nat
+(.fun) : X a Y b => Nat -> Nat
 Z.fun = haha
 (.fun) Z = ahah $ \case
   x@(x, y) => Prelude.Types.ahahah
