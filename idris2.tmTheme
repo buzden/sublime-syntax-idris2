@@ -111,7 +111,7 @@
     </dict>
     <dict>
       <key>name</key><string>Data constructor</string>
-      <key>scope</key><string>entity.name.function.ctor</string>
+      <key>scope</key><string>storage.type</string>
       <key>settings</key><dict>
         <key>fontStyle</key><string></string>
         <key>foreground</key><string>#8F2100</string>
@@ -123,13 +123,6 @@
       <key>settings</key><dict>
         <key>fontStyle</key><string>bold</string>
         <key>foreground</key><string>#007070</string>
-      </dict>
-    </dict>
-    <dict>
-      <key>name</key><string>Infix function definition</string>
-      <key>scope</key><string>entity.name.function.declaration.infix</string>
-      <key>settings</key><dict>
-        <key>fontStyle</key><string>bold</string>
       </dict>
     </dict>
     <dict>

@@ -103,19 +103,19 @@ contexts:
           scope: keyword.operator.delimiter.idris2
           pop: true
         - match: '{{upper_name}}'
-          scope: entity.name.function.ctor.idris2
+          scope: storage.type.constructor.idris2
     - include: param_decl
     - include: data_decl
     - include: function_signature
     - include: ty_expression
   name:
     - match: '(\(\))'
-      scope: entity.name.function.ctor.idris2
+      scope: storage.type.idris2
     - match: '\b({{namespace}}\.)?(?:({{upper_name}})|({{lower_name}}))\b'
       comment: '`Namespace.Namespace.name` or `Namespace.Namespace.Name`'
       captures:
         1: entity.name.namespace.idris2
-        2: entity.name.function.ctor.idris2
+        2: storage.type.idris2
         3: entity.name.function.idris2
     - match: '(\()({{operator}})(\))'
       comment: '(&&&)'
@@ -127,7 +127,7 @@ contexts:
       comment: '(.fun)'
       captures:
         1: punctuation.delimiter.idris2
-        4: entity.name.function.postfix.as-prefix.idris2
+        2: entity.name.function.postfix.as-prefix.idris2
         3: punctuation.delimiter.idris2
   data_decl:
     - match: \b(data|record|interface|implementation)\s

@@ -10,6 +10,9 @@
   syntaxes: "idris2.sublime-syntax",
   theme: "idris2.tmTheme",
 )
+#show raw: set raw(
+  theme: "idris2.tmTheme",
+)
 #show raw.where(lang: "console"): it => block(
   fill: rgb("#0d1423"),
   inset: 8pt,
@@ -21,6 +24,7 @@
 
 ```hs
 -- some code in Haskell
+import Data.List
 
 data X = A | B
 
