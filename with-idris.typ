@@ -106,7 +106,9 @@ fff = `[
 
 x : (y : Vect n (Maybe (Maybe (&&&) Nat))) ->
     {x : Nat} -> {auto _ : Monoid a} ->
-    {default 4 xx : Nat} -> String
+    {default 4 xx : Nat} ->
+    {default (f x Y) xx' : Nat} ->
+    String
 x Z S = ?foo
 x y _ = "a b \{show $ let x = 0 in y} y >>= z"
 
