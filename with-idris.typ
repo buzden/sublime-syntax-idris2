@@ -10,7 +10,7 @@
   syntaxes: "idris2.sublime-syntax",
   theme: "idris2.tmTheme",
 )
-#show raw: set raw(
+#show raw.where(lang: "hs"): set raw(
   theme: "idris2.tmTheme",
 )
 #show raw.where(lang: "console"): it => block(
