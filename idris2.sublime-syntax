@@ -283,13 +283,13 @@ contexts:
   string_interpolation:
     - match: '\\{'
       captures:
-        0: string.quoted.double.idris2
+        0: punctuation.section.interpolation.begin.idris2
       push:
         - clear_scopes: true
-        - meta_content_scope: meta.string.interpolation.idris2
+        - meta_content_scope: meta.interpolation.idris2
         - match: '}'
           captures:
-            0: string.quoted.double.idris2
+            0: punctuation.section.interpolation.begin.idris2
           pop: true
         - include: main
   string:
@@ -306,11 +306,11 @@ contexts:
         - include: escape_characters
   char:
     - match: "(')(?:({{escape_char}})|[^\\'])(')"
-      scope: string.quoted.single.idris2
+      scope: constant.character.idris2
       captures:
-        1: punctuation.definition.string.begin.idris2
+        1: punctuation.definition.char.begin.idris2
         2: constant.character.escape.control.idris2
-        3: punctuation.definition.string.end.idris2
+        3: punctuation.definition.char.end.idris2
   ty_expression:
     - match: '->'
       scope: keyword.operator.arrow.idris2

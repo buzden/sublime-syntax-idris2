@@ -25,24 +25,38 @@
       </dict>
     </dict>
     <dict>
-      <key>name</key><string>Number</string>
+      <key>name</key><string>Constants</string>
+      <key>scope</key><string>constant</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#4071A1</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Escape character</string>
+      <key>scope</key><string>constant.character.escape</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#40A171</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Language constants (e.g. underscore)</string>
+      <key>scope</key><string>constant.language</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#000000</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Numbers</string>
       <key>scope</key><string>constant.numeric</string>
       <key>settings</key><dict>
         <key>foreground</key><string>#40A171</string>
       </dict>
     </dict>
     <dict>
-      <key>name</key><string>Underscore</string>
-      <key>scope</key><string>constant.language.underscore</string>
+      <key>name</key><string>Entity</string>
+      <key>scope</key><string>entity</string>
       <key>settings</key><dict>
-        <key>foreground</key><string>#000000</string>
-      </dict>
-    </dict>
-    <dict>
-      <key>name</key><string>Character constant</string>
-      <key>scope</key><string>constant.character</string>
-      <key>settings</key><dict>
-        <key>foreground</key><string>#40A171</string>
+        <!-- Nothing special here -->
       </dict>
     </dict>
     <dict>
@@ -59,6 +73,14 @@
       <key>settings</key><dict>
         <key>fontStyle</key><string>bold</string>
         <key>foreground</key><string>#7F7F7F</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Invalid</string>
+      <key>scope</key><string>invalid</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#FF0000</string>
+        <key>fontStyle</key><string>bold</string>
       </dict>
     </dict>
     <dict>
@@ -104,10 +126,17 @@
       </dict>
     </dict>
     <dict>
-      <key>name</key><string>Parens around parameters</string>
+      <key>name</key><string>Delimiter (e.g. parens around parameters)</string>
       <key>scope</key><string>punctuation.delimiter</string>
       <key>settings</key><dict>
         <key>foreground</key><string>#444444</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>String interpolation brackets</string>
+      <key>scope</key><string>punctuation.section.interpolation</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#4071A1</string>
       </dict>
     </dict>
     <dict>
