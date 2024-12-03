@@ -21,6 +21,9 @@ variables:
   hex_int: '(?:{{hexs}}(?:_{{hexs}})*)'
   oct_int: '(?:{{octs}}(?:_{{octs}})*)'
   bit_int: '(?:{{bits}}(?:_{{bits}})*)'
+
+  escape_sym: '(?:NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\"''\&])'
+  escape_char: '(?:\\(?:{{escape_sym}}|(?:{{decs}}+)|(?:x{{hexs}}+)|(?:o{{octs}}+)))'
 contexts:
   main:
     - match: \b(if|then|else|case|of|impossible)\b
@@ -154,11 +157,7 @@ contexts:
     - match: '[\[\]{},;]'
       scope: keyword.operator.delimiter.idris2
   escape_characters:
-    - match: '\\(NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL|[abfnrtv\\\"''\&])'
-      scope: constant.character.escape.ascii.idris2
-    - match: '\\o[0-7]+|\\x[0-9A-Fa-f]+|\\[0-9]+'
-      scope: constant.character.escape.octal.idris2
-    - match: '\^[A-Z@\[\]\\\^_]'
+    - match: '{{escape_char}}'
       scope: constant.character.escape.control.idris2
   function_signature:
     - match: '({{prefix_name}})\s*(?:,\s*({{prefix_name}})\s*)?(?:,\s*({{prefix_name}})\s*)?(:)(?!:)'
@@ -306,17 +305,12 @@ contexts:
         - include: string_interpolation
         - include: escape_characters
   char:
-    - match: "'"
+    - match: "(')(?:({{escape_char}})|[^\\'])(')"
+      scope: string.quoted.single.idris2
       captures:
-        0: punctuation.definition.string.begin.idris2
-      push:
-        - meta_scope: string.quoted.single.idris2
-        - match: "'"
-          captures:
-            0: punctuation.definition.string.end.idris2
-          pop: true
-        - include: escape_characters
-      comment: TODO to match only a single char
+        1: punctuation.definition.string.begin.idris2
+        2: constant.character.escape.control.idris2
+        3: punctuation.definition.string.end.idris2
   ty_expression:
     - match: '->'
       scope: keyword.operator.arrow.idris2

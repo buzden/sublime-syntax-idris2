@@ -81,7 +81,7 @@ public export covering
 Z .fun = haha.fun haha .N
 (.fun) Z = ahah $ \case
   x@(x, y) => Prelude.Types.ahahah
-  
+
 (.N) : Nat -> Nat
 Z .N = Z
 (.N) (S n) = n
@@ -130,6 +130,19 @@ multiline : String
 multiline = """
   A multiline string\NUL
   """
+
+f' : Nat -> Nat
+f' = x' 4
+
+x : Char
+x = '\BEL'
+x = '\\'
+x = '\''
+x = '\o755'
+x = 'a'
+
+xx : Int
+xx = 0o7_5_5
 ```
 
 = Console
