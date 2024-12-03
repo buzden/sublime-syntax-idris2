@@ -25,13 +25,6 @@
       </dict>
     </dict>
     <dict>
-      <key>name</key><string>String</string>
-      <key>scope</key><string>string</string>
-      <key>settings</key><dict>
-        <key>foreground</key><string>#4071A1</string>
-      </dict>
-    </dict>
-    <dict>
       <key>name</key><string>Number</string>
       <key>scope</key><string>constant.numeric</string>
       <key>settings</key><dict>
@@ -53,24 +46,19 @@
       </dict>
     </dict>
     <dict>
-      <key>name</key><string>Variable</string>
-      <key>scope</key><string>variable</string>
+      <key>name</key><string>Function definition</string>
+      <key>scope</key><string>entity.name.function.declaration</string>
       <key>settings</key><dict>
-        <key>foreground</key><string>#222222</string>
-      </dict>
-    </dict>
-    <dict>
-      <key>name</key><string>Typed hole</string>
-      <key>scope</key><string>variable.function.typed-hole</string>
-      <key>settings</key><dict>
-        <key>foreground</key><string>#40A171</string>
-      </dict>
-    </dict>
-    <dict>
-      <key>name</key><string>Parameter declaration</string>
-      <key>scope</key><string>variable.parameter</string>
-      <key>settings</key><dict>
+        <key>fontStyle</key><string>bold</string>
         <key>foreground</key><string>#007070</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Namespace</string>
+      <key>scope</key><string>entity.name.namespace</string>
+      <key>settings</key><dict>
+        <key>fontStyle</key><string>bold</string>
+        <key>foreground</key><string>#7F7F7F</string>
       </dict>
     </dict>
     <dict>
@@ -102,38 +90,6 @@
       </dict>
     </dict>
     <dict>
-      <key>name</key><string>Modifiers</string>
-      <key>scope</key><string>storage.modifier</string>
-      <key>settings</key><dict>
-        <key>fontStyle</key><string></string>
-        <key>foreground</key><string>#808000</string>
-      </dict>
-    </dict>
-    <dict>
-      <key>name</key><string>Data constructor</string>
-      <key>scope</key><string>storage.type</string>
-      <key>settings</key><dict>
-        <key>fontStyle</key><string></string>
-        <key>foreground</key><string>#8F2100</string>
-      </dict>
-    </dict>
-    <dict>
-      <key>name</key><string>Function definition</string>
-      <key>scope</key><string>entity.name.function.declaration</string>
-      <key>settings</key><dict>
-        <key>fontStyle</key><string>bold</string>
-        <key>foreground</key><string>#007070</string>
-      </dict>
-    </dict>
-    <dict>
-      <key>name</key><string>Namespace</string>
-      <key>scope</key><string>entity.name.namespace</string>
-      <key>settings</key><dict>
-        <key>fontStyle</key><string>bold</string>
-        <key>foreground</key><string>#7F7F7F</string>
-      </dict>
-    </dict>
-    <dict>
       <key>name</key><string>Value of default argument</string>
       <key>scope</key><string>meta.function.default-arg-value</string>
       <key>settings</key><dict>
@@ -152,6 +108,50 @@
       <key>scope</key><string>punctuation.delimiter</string>
       <key>settings</key><dict>
         <key>foreground</key><string>#444444</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Modifiers</string>
+      <key>scope</key><string>storage.modifier</string>
+      <key>settings</key><dict>
+        <key>fontStyle</key><string></string>
+        <key>foreground</key><string>#808000</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Data constructor</string>
+      <key>scope</key><string>storage.type</string>
+      <key>settings</key><dict>
+        <key>fontStyle</key><string></string>
+        <key>foreground</key><string>#8F2100</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>String</string>
+      <key>scope</key><string>string</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#4071A1</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Variable</string>
+      <key>scope</key><string>variable</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#222222</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Typed hole</string>
+      <key>scope</key><string>variable.function.typed-hole</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#40A171</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Parameter declaration</string>
+      <key>scope</key><string>variable.parameter</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#007070</string>
       </dict>
     </dict>
   </array>
