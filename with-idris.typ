@@ -8,10 +8,10 @@
 // )
 #show raw.where(lang: "idris"): set raw(
   syntaxes: "idris2.sublime-syntax",
-  theme: "idris2.tmTheme",
+  theme: "panydocy.tmTheme",
 )
 #show raw.where(lang: "hs"): set raw(
-  theme: "idris2.tmTheme",
+  theme: "panydocy.tmTheme",
 )
 #show raw.where(lang: "console"): it => block(
   fill: rgb("#0d1423"),
