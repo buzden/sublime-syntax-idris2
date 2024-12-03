@@ -13,12 +13,19 @@
 #show raw.where(lang: "hs"): set raw(
   theme: "panydocy.tmTheme",
 )
-#show raw.where(lang: "console"): it => block(
-  fill: rgb("#0d1423"),
-  inset: 8pt,
-  radius: 5pt,
-  text(fill: rgb("#b2bacc"), it)
-)
+#show raw.where(lang: "console"): it => {
+  let quote(str) = {
+    str.replace(regex("[\\\\/@_*\-+~`<>]"), found => "\\" + found.text).replace(" ", "~").replace("\\\\#", "\\#")
+  }
+  show raw.line: it => eval(quote(it.text), mode: "markup")
+  block(
+    fill: rgb("#0d1423"),
+    inset: 8pt,
+    radius: 5pt,
+    width: 100%,
+    text(fill: rgb("#b2bacc"), it)
+  )
+}
 
 = Haskell
 
@@ -153,7 +160,9 @@ xx = 0o7_5_5
     / // __  / ___/ / ___/   __/ /     Version 0.7.0-fc3d2a04d
   _/ // /_/ / /  / (__  )   / __/      https://www.idris-lang.org
  /___/\__,_/_/  /_/____/   /____/      Type :? for help
-
 Welcome to Idris 2.  Enjoy yourself!
-Main>
+#text(green)[Main>] [1, 2, 3] >>= pure
+[#text(red)[1], #text(red)[2], #text(red)[3]]
+#text(green)[Main>] -- \# <- we can print this sign using quotation
+#text(green)[Main>]
 ```
