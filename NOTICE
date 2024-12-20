@@ -1,0 +1,14 @@
+Sublime syntax for Idris 2 language and Panydocy theme
+Copyright 2024 Denis Buzdalov
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Thanks for some ideas to
+- vscode plugin for Idris 2;
+- sublime syntax for Haskell;
+- vim plugin for Idris 2;
+- code highlighting theme of Pandoc.
