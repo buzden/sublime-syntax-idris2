@@ -121,26 +121,26 @@ contexts:
       captures:
         1: entity.name.namespace.idris2
         2: storage.type.idris2
-        3: variable.function.idris2
+        #3: variable.function.prefix.idris2
     - match: '(\()({{operator}})(\))'
       comment: '(&&&)'
       captures:
         1: keyword.other.prefix.for-infix.idris2
-        2: variable.function.infix.idris2
+        #2: variable.function.infix.idris2
         3: keyword.other.prefix.for-infix.idris2
     - match: '(\()(\.)({{basic_name}})(\))'
       comment: '(.fun)'
       captures:
         1: keyword.other.prefix.for-postfix.idris2
         2: keyword.other.postfix.idris2
-        3: variable.function.postfix.as-prefix.idris2
+        #3: variable.function.postfix.as-prefix.idris2
         4: keyword.other.prefix.for-postfix.idris2
   postfix_name:
     - match: '(\.)({{basic_name}})'
       comment: '.fun or .Fun'
       captures:
         1: keyword.other.postfix.idris2
-        2: variable.function.postfix.idris2
+        #2: variable.function.postfix.idris2
   data_decl:
     - match: \b(data|record|interface|implementation)\s
       captures:
