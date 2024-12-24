@@ -10,3 +10,11 @@ This was mainly created to be usable with [`bat`](https://github.com/sharkdp/bat
 The theme looks especially good for the Idris 2 programming language with the provided syntax highlighting.
 
 You can look at a [usage example](with-idris.typ) using the provided `typst` document.
+
+##
+
+Thanks for some ideas to
+- vscode plugin for Idris 2
+- sublime syntax for Haskell
+- vim plugin for Idris 2
+- code highlighting theme of Pandoc
