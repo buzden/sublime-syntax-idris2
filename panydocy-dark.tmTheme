@@ -7,7 +7,7 @@
     <dict>
       <key>settings</key><dict>
         <key>background</key><string>#0D1423</string>
-        <key>foreground</key><string>#B2BACC</string>
+        <key>foreground</key><string>#B2BABC</string>
       </dict>
     </dict>
     <dict>
@@ -15,7 +15,7 @@
       <key>scope</key><string>comment</string>
       <key>settings</key><dict>
         <key>fontStyle</key><string>italic</string>
-        <key>foreground</key><string>#61A1B1</string>
+        <key>foreground</key><string>#418191</string>
       </dict>
     </dict>
     <dict>
@@ -43,7 +43,7 @@
       <key>name</key><string>Language constants (e.g. underscore)</string>
       <key>scope</key><string>constant.language</string>
       <key>settings</key><dict>
-        <key>foreground</key><string>#B2BACC</string>
+        <key>foreground</key><string>#B2BABC</string>
       </dict>
     </dict>
     <dict>
@@ -65,7 +65,7 @@
       <key>scope</key><string>entity.name.function</string>
       <key>settings</key><dict>
         <key>fontStyle</key><string>bold</string>
-        <key>foreground</key><string>#009090</string>
+        <key>foreground</key><string>#00A0A0</string>
       </dict>
     </dict>
     <dict>
@@ -153,7 +153,7 @@
       <key>scope</key><string>storage.type</string>
       <key>settings</key><dict>
         <key>fontStyle</key><string></string>
-        <key>foreground</key><string>#009141</string>
+        <key>foreground</key><string>#009121</string>
       </dict>
     </dict>
     <dict>
@@ -181,7 +181,7 @@
       <key>name</key><string>Parameter declaration</string>
       <key>scope</key><string>variable.parameter</string>
       <key>settings</key><dict>
-        <key>foreground</key><string>#009090</string>
+        <key>foreground</key><string>#00A0A0</string>
       </dict>
     </dict>
   </array>
