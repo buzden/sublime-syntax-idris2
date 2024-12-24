@@ -119,12 +119,12 @@ contexts:
       captures:
         1: entity.name.namespace.idris2
         2: storage.type.idris2
-        3: entity.name.function.idris2
+        3: variable.function.idris2
     - match: '(\()({{operator}})(\))'
       comment: '(&&&)'
       captures:
         1: punctuation.delimiter.idris2
-        2: keyword.operator.infix-as-prefix.idris2
+        2: keyword.operator.function.infix.idris2
         3: punctuation.delimiter.idris2
     - match: '(\()(\.{{basic_name}})(\))'
       comment: '(.fun)'

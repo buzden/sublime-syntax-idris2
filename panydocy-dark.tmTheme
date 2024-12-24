@@ -62,7 +62,7 @@
     </dict>
     <dict>
       <key>name</key><string>Function definition</string>
-      <key>scope</key><string>entity.name.function.declaration</string>
+      <key>scope</key><string>entity.name.function</string>
       <key>settings</key><dict>
         <key>fontStyle</key><string>bold</string>
         <key>foreground</key><string>#009090</string>
@@ -167,7 +167,7 @@
       <key>name</key><string>Variable</string>
       <key>scope</key><string>variable</string>
       <key>settings</key><dict>
-        <key>foreground</key><string>#A2AABC</string>
+        <!-- Nothing special here -->
       </dict>
     </dict>
     <dict>
