@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>name</key><string>Panydocy (dark)</string>
+  <key>settings</key><array>
+    <dict>
+      <key>settings</key><dict>
+        <key>background</key><string>#0D1423</string>
+        <key>foreground</key><string>#B2BACC</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Comment</string>
+      <key>scope</key><string>comment</string>
+      <key>settings</key><dict>
+        <key>fontStyle</key><string>italic</string>
+        <key>foreground</key><string>#61A1B1</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Documentation comment</string>
+      <key>scope</key><string>comment.documentation</string>
+      <key>settings</key><dict>
+        <key>fontStyle</key><string></string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Constants</string>
+      <key>scope</key><string>constant</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#6091C1</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Escape character</string>
+      <key>scope</key><string>constant.character.escape</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#60C191</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Language constants (e.g. underscore)</string>
+      <key>scope</key><string>constant.language</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#B2BACC</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Numbers</string>
+      <key>scope</key><string>constant.numeric</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#60C191</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Entity</string>
+      <key>scope</key><string>entity</string>
+      <key>settings</key><dict>
+        <!-- Nothing special here -->
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Function definition</string>
+      <key>scope</key><string>entity.name.function.declaration</string>
+      <key>settings</key><dict>
+        <key>fontStyle</key><string>bold</string>
+        <key>foreground</key><string>#009090</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Namespace</string>
+      <key>scope</key><string>entity.name.namespace</string>
+      <key>settings</key><dict>
+        <key>fontStyle</key><string>bold</string>
+        <key>foreground</key><string>#6F6F6F</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Invalid</string>
+      <key>scope</key><string>invalid</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#FF0000</string>
+        <key>fontStyle</key><string>bold</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Keyword</string>
+      <key>scope</key><string>keyword</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#AF4120</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Declaration keyword</string>
+      <key>scope</key><string>keyword.declaration</string>
+      <key>settings</key><dict>
+        <key>fontStyle</key><string>bold</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Operator</string>
+      <key>scope</key><string>keyword.operator</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#0569BD</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Quasiquotation</string>
+      <key>scope</key><string>keyword.operator.quasiquote</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#6F6F7F</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Value of default argument</string>
+      <key>scope</key><string>meta.function.default-arg-value</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#7F7F7F</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>String interpolation meta</string>
+      <key>scope</key><string>meta.string.interpolation</string>
+      <key>settings</key><dict>
+        <!--<key>fontStyle</key><string>underline</string>-->
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Delimiter (e.g. parens around parameters)</string>
+      <key>scope</key><string>punctuation.delimiter</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#888888</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>String interpolation brackets</string>
+      <key>scope</key><string>punctuation.section.interpolation</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#6091C1</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Modifiers</string>
+      <key>scope</key><string>storage.modifier</string>
+      <key>settings</key><dict>
+        <key>fontStyle</key><string></string>
+        <key>foreground</key><string>#808000</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Data constructor</string>
+      <key>scope</key><string>storage.type</string>
+      <key>settings</key><dict>
+        <key>fontStyle</key><string></string>
+        <key>foreground</key><string>#009141</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>String</string>
+      <key>scope</key><string>string</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#6091C1</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Variable</string>
+      <key>scope</key><string>variable</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#A2AABC</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Typed hole</string>
+      <key>scope</key><string>variable.function.typed-hole</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#60C191</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key><string>Parameter declaration</string>
+      <key>scope</key><string>variable.parameter</string>
+      <key>settings</key><dict>
+        <key>foreground</key><string>#009090</string>
+      </dict>
+    </dict>
+  </array>
+</dict>
+</plist>

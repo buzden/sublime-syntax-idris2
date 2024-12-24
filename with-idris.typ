@@ -8,10 +8,10 @@
 // )
 #show raw.where(lang: "idris"): set raw(
   syntaxes: "idris2.sublime-syntax",
-  theme: "panydocy.tmTheme",
+  theme: "panydocy-light.tmTheme",
 )
 #show raw.where(lang: "hs"): set raw(
-  theme: "panydocy.tmTheme",
+  theme: "panydocy-light.tmTheme",
 )
 #show raw.where(lang: "console"): it => {
   let quote(str) = {
@@ -40,8 +40,9 @@ f x | x > 0     = x
     | otherwise = 0
 ```
 
-= Idris
+= Idris (light theme)
 
+#let idrisCode=[
 ```idris
 -- some code in Idris
 module XX.X'''
@@ -151,6 +152,26 @@ x = 'a'
 xx : Int
 xx = 0o7_5_5
 ```
+]
+
+#idrisCode
+
+= Idris (dark theme)
+
+#show raw.where(lang: "idris"): set raw(
+  theme: "panydocy-dark.tmTheme",
+)
+#show raw.where(lang: "idris"): it => {
+  block(
+    fill: rgb("#0d1423"),
+    inset: 8pt,
+    radius: 5pt,
+    width: 100%,
+    text(fill: rgb("#b2bacc"), it)
+  )
+}
+
+#idrisCode
 
 = Console
 
