@@ -92,7 +92,7 @@ Z .fun = haha.fun haha .N
 
 (.N) : Nat -> Nat
 Z .N = Z
-(.N) (S n) = n
+(.N) (S n) = (.N) n
 
 xx : Name
 xx = `{Full.Name}
@@ -117,7 +117,7 @@ fff : List Decl
 fff = `[
   f : Nat -> Nat
 
-  f Z = haha %runElab %search %World
+  f Z = haha %runElab %search @{%World}
 ]
 
 private infixr 4 ^--^
