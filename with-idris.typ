@@ -18,6 +18,9 @@
     str.replace(regex("[\\\\/@_*\-+~`<>]"), found => "\\" + found.text).replace(" ", "~").replace("\\\\#", "\\#")
   }
   show raw.line: it => eval(quote(it.text), mode: "markup")
+  it
+}
+#show raw.where(lang: "console"): it => {
   block(
     fill: rgb("#0d1423"),
     inset: 8pt,
@@ -74,6 +77,6 @@ f x | x > 0     = x
 Welcome to Idris 2.  Enjoy yourself!
 #text(green)[Main>] [1, 2, 3] >>= pure
 [#text(red)[1], #text(red)[2], #text(red)[3]]
-#text(green)[Main>] -- \# <- we can print this sign using quotation
+#text(green)[Main>] -- \# <- we can print this sign using quotation (\\#)
 #text(green)[Main>]
 ```
