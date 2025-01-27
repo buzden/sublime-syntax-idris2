@@ -6,8 +6,10 @@ This was mainly created to be usable with [`bat`](https://github.com/sharkdp/bat
 
 ## Panydocy theme
 
-[This theme](panydocy.tmTheme) makes code to look similarly to the default code theme of [Pandoc](https://pandoc.org/).
+[This theme](panydocy-light.tmTheme) makes code to look similarly to the default code theme of [Pandoc](https://pandoc.org/).
 The theme looks especially good for the Idris 2 programming language with the provided syntax highlighting.
+
+[A dark variant](panydocy-dark.tmTheme) of the same theme exists, it builds on the same principles, but uses different colours.
 
 You can look at a [usage example](with-idris.typ) using the provided `typst` document.
 
